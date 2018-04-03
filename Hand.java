@@ -14,15 +14,14 @@ import java.util.*;
 public class Hand implements HandTests
 {
 	private ArrayList<Dice> rollList;
-	private int diceNum;
+	private static final int diceNum = 5;
 	
 	/*
 	 * Constructor creates an Integer ArrayList with the initial capacity of 6 elements.
 	 */
-	public Hand(int diceNumber)
+	public Hand()
 	{
 		rollList = new ArrayList<Dice>();
-		diceNum = diceNumber;
 	}
 	
 	/*
@@ -73,7 +72,7 @@ public class Hand implements HandTests
 	{
 		for(int i = 0; i < rollList.size(); i++)
 		{
-			System.out.print(rollList.get(i).getRoll() + " ");
+			System.out.print(rollList.get(i).getWeapon() + " ");
 		}
 		System.out.println();
 	}
@@ -172,8 +171,6 @@ public class Hand implements HandTests
 	{
 	    boolean found2K = false;
 	    boolean found3K = false;
-	    boolean found4K = false;
-	    boolean found5K = false;
 	
 	    int currentCount ;
 	    for (int dieValue = 1; dieValue <= diceNum + 1; dieValue++)
@@ -195,14 +192,6 @@ public class Hand implements HandTests
 	        {
 	            found3K = true;
 	        }
-	        if(currentCount == 4)
-	        {
-	        		found4K = true;
-	        }
-	        if(currentCount >= 5)
-	        {
-	        		return true;
-	        }
 	    }
 	    
 	    if (found2K && found3K)
@@ -210,15 +199,26 @@ public class Hand implements HandTests
 	        return true;
 	    }
 	    
-	    if(diceNum > 5)
-	    {
-	    		if(((found3K || found4K) && found2K) || ((found3K || found4K) && found3K) 
-	    		|| ((found3K || found4K) && found4K) || ((found3K || found4K) && found5K))
-	    		{
-	    			return true;
-	    		}
-	    }
-	    
 	    return false;
+	}
+
+	public boolean versatileVictor() 
+	{
+		return false;
+	}
+
+	public boolean havingABlast() 
+	{
+		return false;
+	}
+
+	public boolean masterfulMarksman() 
+	{
+		return false;
+	}
+
+	public boolean runninAndGunnin() 
+	{
+		return false;
 	}
 }

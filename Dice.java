@@ -13,15 +13,29 @@ import java.util.Random;
 public class Dice 
 {
 	private int roll;
-	private int diceSide;
+	private Weapon type;
+	private int diceSide = 9;
+	
+	private enum Weapon
+	{
+		pistol, 
+		crossbow, 
+		minigun, 
+		submachinegun, 
+		grenadeL, 
+		shotgun, 
+		sniper,
+		rocketL, 
+		assaultrifle
+	}
 	
 	/*
 	 * Constructor for Dice object
 	 */
-	public Dice(int diceSides)
+	public Dice()
 	{
-		diceSide = diceSides;
 		roll = 0;
+		type = null;
 	}
 	
 	/*
@@ -30,6 +44,11 @@ public class Dice
 	public int getRoll()
 	{
 		return roll;
+	}
+	
+	public Weapon getWeapon()
+	{
+		return type;
 	}
 	
 	/*
@@ -41,5 +60,36 @@ public class Dice
 	{
 		Random random = new Random();
 		roll = random.nextInt(diceSide) + 1;
+		switch(roll)
+		{
+			case 1:
+				type = Weapon.pistol;
+				break;
+			case 2:
+				type = Weapon.crossbow;
+				break;
+			case 3:
+				type = Weapon.minigun;
+				break;
+			case 4:
+				type = Weapon.submachinegun;
+				break;
+			case 5:
+				type = Weapon.grenadeL;
+				break;
+			case 6:
+				type = Weapon.shotgun;
+				break;
+			case 7:
+				type = Weapon.sniper;
+				break;
+			case 8:
+				type = Weapon.rocketL;
+				break;
+			case 9:
+				type = Weapon.assaultrifle;
+				break;
+				
+		}
 	}
 }

@@ -27,4 +27,9 @@ public interface HandTests
 	 * 			False if the hand is not a full house.
 	 */
 	public boolean fullHouseFound();
+	
+	public boolean versatileVictor();
+	public boolean havingABlast();
+	public boolean masterfulMarksman();
+	public boolean runninAndGunnin();
 }

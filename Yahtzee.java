@@ -8,17 +8,13 @@
  * @version v1.0
  */
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.*;
 
 public class Yahtzee
 {
-	private static int diceSide;
-	private static int diceNum;
-	private static int rollsPerHand;
+	private static final int diceSide = 9;
+	private static final int diceNum = 5;
+	private static final int rollsPerHand = 4;
 	
 	public static void main(String[] args) 
 	{
@@ -38,24 +34,17 @@ public class Yahtzee
 			//Sets up turns for the game.
 			int gameTurn = 1;
 			
-			//Gets config from config file or edits config file per user request.
-			try 
-			{
-				getConfig(input);
-			} 
-			catch (FileNotFoundException e) 
-			{
-				System.out.println("An exception was thrown...Here is what I know: ");
-				e.printStackTrace();
-			}
-			
-			ScoreCard gameCard = new ScoreCard(diceSide);
+			ScoreCard gameCard = new ScoreCard();
+			 
+			System.out.println("You are playing with 5 dice.");
+			System.out.println("Each dice has 9 sides.");
+			System.out.println("You have 4 rolls per hand.");
 			
 			while(gameTurn <= diceSide + 7)
 			{
 				System.out.println("Turn " + gameTurn + ":");
 				//Creates hand for the game .
-				Hand yHand = new Hand(diceNum);
+				Hand yHand = new Hand();
 				
 				//Creates strings to keep track of which dice are kept or not.
 				StringBuilder keepDieBuilder = new StringBuilder();
@@ -82,7 +71,7 @@ public class Yahtzee
 					{
 						if(keepDie.charAt(dieNumber) != 'y')
 						{
-							Dice newDice = new Dice(diceSide);
+							Dice newDice = new Dice();
 							if(currentRolls == 1)
 							{
 								try 
@@ -113,7 +102,6 @@ public class Yahtzee
 						keepDie = input.nextLine();
 					}
 					currentRolls++;
-					
 				}
 				
 				//Prints sorted hand.
@@ -124,11 +112,11 @@ public class Yahtzee
 				System.out.println();
 				
 				//Creating a temporary score card to hold the scores from this turn.
-				ScoreCard tmpCard = new ScoreCard(diceSide);
+				ScoreCard tmpCard = new ScoreCard();
 				
 				//Sets scores into temporary score card.
-				upperScores(yHand, tmpCard);
-				lowerScores(yHand, tmpCard);
+				tmpCard.upperScores(yHand, tmpCard);
+				tmpCard.lowerScores(yHand, tmpCard);
 				tmpCard.calculateGrand();
 								
 				//Prints out scores available to put into their game score card.
@@ -162,7 +150,7 @@ public class Yahtzee
 			}
 			
 			//Prints end-game text and final card.
-			System.out.println("You have completed a game of Yahtzee!");
+			System.out.println("You have completed a game of Fortnite Yahtzee!");
 			System.out.println("Your final score card is:");
 			
 			//Sets totals for the game card.
@@ -183,132 +171,6 @@ public class Yahtzee
 		input.close();
 		
 		System.out.println("Thank you for playing!");
-	}
-	
-	/*
-	 * Reads the config file for the game and updates it if the user specifies they want to change it.
-	 * Throws FileNotFoundException if the file is not found. 
-	 * 
-	 * @input Scanner for user input.
-	 */
-	private static void getConfig(Scanner input) throws FileNotFoundException
-	{
-		Scanner in = new Scanner(new File("yahtzeeConfig.txt"));
-		diceSide = in.nextInt();
-		diceNum = in.nextInt();
-		rollsPerHand = in.nextInt();
-		in.close();
-		
-		System.out.println("You are playing with " + diceNum + " " + diceSide + "-sided die.");
-		System.out.println("You get " + rollsPerHand + " rolls per hand.");
-		
-		System.out.println();
-
-		System.out.print("Press 'y' if you would like to change the configuration: ");
-		
-		String ans = input.nextLine();
-		
-		if(ans.equals("y"))
-		{
-			PrintWriter pw = new PrintWriter(new FileOutputStream("yahtzeeConfig.txt", false));
-			System.out.print("Enter the number of sides on each die: ");
-			diceSide = Integer.parseInt(input.nextLine());
-			pw.println(diceSide);
-			
-			System.out.print("Enter the number of dice in play: ");
-			diceNum = Integer.parseInt(input.nextLine());
-			pw.println(diceNum);
-			
-			System.out.print("Enter the number of rolls per hand ");
-			rollsPerHand = Integer.parseInt(input.nextLine());
-			pw.println(rollsPerHand);
-			pw.close();
-		}
-		
-		System.out.println();
-	}
-	
-	/*
-	 * Sets values for the upper score card for the game of Yahtzee.
-	 * 
-	 * @theHand The hand the player has in the game.
-	 */
-	private static void upperScores(Hand theHand, ScoreCard tmpCard)
-	{
-		int total = 0;
-		int i = 0;
-		for (int dieValue = 1; dieValue <= diceSide; dieValue++, i++)
-        {
-            int currentCount = 0;
-            for (int diePosition = 0; diePosition < diceNum; diePosition++)
-            {
-                if (theHand.get(diePosition).getRoll() == dieValue)
-                {
-                    currentCount++;
-                }
-            }
-            
-            	tmpCard.set(i, (dieValue * currentCount));
-            	total += (dieValue * currentCount);
-        }
-		
-		if(total >= 63)
-		{
-			tmpCard.setUpper(total + 35);
-		}
-		else
-		{
-			tmpCard.setUpper(total);
-		}
-	}
-	
-	/*
-	 * Sets values for the lower score card for the game of Yahtzee.
-	 * 
-	 * @theHand The hand the player has in the game.
-	 */
-	private static void lowerScores(Hand theHand, ScoreCard tmpCard)
-	{
-		int total = 0;
-		if(theHand.maxOfAKindFound() >= 3)
-		{
-			tmpCard.set(diceSide, theHand.totalAllDice());
-			total += theHand.totalAllDice();
-		}
-		
-		if(theHand.maxOfAKindFound() >= 4)
-		{
-			tmpCard.set(diceSide + 1, theHand.totalAllDice());
-			total += theHand.totalAllDice();
-		}
-		
-		if(theHand.fullHouseFound())
-		{
-			tmpCard.set(diceSide + 2, 25);
-			total += 25;
-		}
-		
-		if(theHand.maxStraightFound() >= 4)
-		{
-			tmpCard.set(diceSide + 3, 30);
-			total += 30;
-		}
-		
-		if(theHand.maxStraightFound() >= 5)
-		{
-			tmpCard.set(diceSide + 4, 40);
-			total += 40;
-		}
-		
-		if(theHand.maxOfAKindFound() >= 5)
-		{
-			tmpCard.set(diceSide + 5, 50);
-			total += 50;
-		}
-		
-		tmpCard.set(diceSide + 6, theHand.totalAllDice());
-		total += theHand.totalAllDice();
-		tmpCard.setLower(total);
 	}
 }
 

@@ -23,16 +23,16 @@ public class ScoreCard
 	private int grandTotal;
 
 	//Local variable to store the number of sides on the dice.
-	private int diceSide;
+	private static final int diceSide = 9;
+	private static final int diceNum = 5;
 	
 	/*
 	 * Constructor for a score card.
 	 * 
 	 * @diceSides The specified number of sides of dice that come from the config file
 	 */
-	public ScoreCard(int diceSides)
+	public ScoreCard()
 	{
-		diceSide = diceSides;
 		scoreCard = new HashMap<Integer, Integer>();
 		for(int i = 0; i <= diceSide + 7; i++)
 		{
@@ -78,9 +78,9 @@ public class ScoreCard
 			total += scoreCard.get(i);
 		}
 		
-		if(total >= 63)
+		if(total >= 110)
 		{
-			total += 35;
+			total += 40;
 		}
 		return total;
 	}
@@ -142,6 +142,98 @@ public class ScoreCard
 	}
 	
 	/*
+	 * Sets values for the upper score card for the game of Yahtzee.
+	 * 
+	 * @theHand The hand the player has in the game.
+	 */
+	public void upperScores(Hand theHand, ScoreCard tmpCard)
+	{
+		int total = 0;
+		int i = 0;
+		for (int dieValue = 1; dieValue <= diceSide; dieValue++, i++)
+        {
+            int currentCount = 0;
+            for (int diePosition = 0; diePosition < diceNum; diePosition++)
+            {
+                if (theHand.get(diePosition).getRoll() == dieValue)
+                {
+                    currentCount++;
+                }
+            }
+            
+            	tmpCard.set(i, (dieValue * currentCount));
+            	total += (dieValue * currentCount);
+        }
+		
+		if(total >= 110)
+		{
+			tmpCard.setUpper(total + 40);
+		}
+		else
+		{
+			tmpCard.setUpper(total);
+		}
+	}
+	
+	/*
+	 * Sets values for the lower score card for the game of Yahtzee.
+	 * 
+	 * @theHand The hand the player has in the game.
+	 */
+	public void lowerScores(Hand theHand, ScoreCard tmpCard)
+	{
+		int total = 0;
+		if(theHand.maxOfAKindFound() >= 3)
+		{
+			tmpCard.set(diceSide, theHand.totalAllDice());
+			total += 10;
+		}
+		
+		if(theHand.maxOfAKindFound() >= 4)
+		{
+			tmpCard.set(diceSide + 1, theHand.totalAllDice());
+			total += 20;
+		}
+		
+		if(theHand.fullHouseFound())
+		{
+			tmpCard.set(diceSide + 2, 25);
+			total += 25;
+		}
+		
+		if(theHand.versatileVictor())
+		{
+			tmpCard.set(diceSide + 3, 30);
+			total += 30;
+		}
+		
+		if(theHand.havingABlast())
+		{
+			tmpCard.set(diceSide + 4, 40);
+			total += 35;
+		}
+		
+		if(theHand.masterfulMarksman())
+		{
+			tmpCard.set(diceSide + 5, 40);
+			total += 40;
+		}
+		
+		if(theHand.runninAndGunnin())
+		{
+			tmpCard.set(diceSide + 6, 40);
+			total += 40;
+		}
+		
+		if(theHand.maxOfAKindFound() >= 5)
+		{
+			tmpCard.set(diceSide + 7, 50);
+			total += 50;
+		}
+		tmpCard.setLower(total);
+	}
+	
+	/*
 	 * Prints out the score card with totals (upper, lower, and grand).
 	 */
 	public void printComplete()
@@ -150,7 +242,27 @@ public class ScoreCard
 		{
 			if(i < diceSide)
 			{
-				System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the " + (i + 1) + " line");
+				switch(i)
+				{
+					case 1:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line");
+					case 2:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line");
+					case 3:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line");
+					case 4:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line");
+					case 5:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line");
+					case 6:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line");
+					case 7:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line");
+					case 8:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line");
+					case 9:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line");
+				}
 			}
 			else if(i >= diceSide)
 			{
@@ -170,19 +282,23 @@ public class ScoreCard
 				}
 				else if(i == diceSide + 3)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Small Striaght line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Versatile Victor\" line");
 				}
 				else if(i == diceSide + 4)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Large Straight line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Having a Blast\" line");
 				}
 				else if(i == diceSide + 5)
-				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line");
+				{		
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Masterful Marksman\" line");
 				}
 				else if(i == diceSide + 6)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the chance line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Runnin' and Gunnin'\" line");
+				}
+				else if(i == diceSide + 7)
+				{
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line");
 				}
 			}
 		}
@@ -198,7 +314,27 @@ public class ScoreCard
 		{
 			if(i < diceSide)
 			{
-				System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the " + (i + 1) + " line");
+				switch(i)
+				{
+					case 1:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line");
+					case 2:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line");
+					case 3:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line");
+					case 4:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line");
+					case 5:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line");
+					case 6:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line");
+					case 7:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line");
+					case 8:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line");
+					case 9:
+						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line");
+				}
 			}
 			else if(i >= diceSide)
 			{
@@ -216,19 +352,23 @@ public class ScoreCard
 				}
 				else if(i == diceSide + 3)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Small Striaght line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Versatile Victor\" line");
 				}
 				else if(i == diceSide + 4)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Large Straight line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Having a Blast\" line");
 				}
 				else if(i == diceSide + 5)
 				{		
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Masterful Marksman\" line");
 				}
 				else if(i == diceSide + 6)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the chance line");
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Runnin' and Gunnin'\" line");
+				}
+				else if(i == diceSide + 7)
+				{
+					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line");
 				}
 			}
 		}
