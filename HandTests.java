@@ -1,11 +1,11 @@
 /*
- * An interface which represents the tests needed to be performed on a hand in a Yahtzee game.
+ * An interface which represents the tests needed to be performed on a hand in a Fortnite Yahtzee game.
  * 
  * CPSC224-02, Spring 2018
- * Programming Assignment #6
+ * Final Assignment
  * 
- * @author Cole deSilva
- * @version v2.0 3/22/2018
+ * @authors Isak Bjornson, Kevin Shaw, & Cole deSilva
+ * @version v1.0
  */
 
 public interface HandTests 

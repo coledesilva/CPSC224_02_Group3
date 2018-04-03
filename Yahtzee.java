@@ -1,11 +1,11 @@
 /*
- * This program runs a full game of Yahtzee.
+ * This program runs a full game of Fortnite Yahtzee.
  * 
  * CPSC224-02, Spring 2018
- * Programming Assignment #6
+ * Final Assignment 
  * 
- * @author Cole deSilva
- * @version v3.0 3/22/2018
+ * @authors Isak Bjornson, Kevin Shaw, & Cole deSilva
+ * @version v1.0
  */
 
 import java.io.File;
