@@ -39,6 +39,7 @@ public class Yahtzee
 			System.out.println("You are playing with 5 dice.");
 			System.out.println("Each dice has 9 sides.");
 			System.out.println("You have 4 rolls per hand.");
+			printBS(2);
 			
 			while(gameTurn <= diceSide + 7)
 			{
@@ -98,18 +99,29 @@ public class Yahtzee
 					
 					if(currentRolls < rollsPerHand)
 					{
-						System.out.print("Enter dice to keep (y or n) ");
-						keepDie = input.nextLine();
+						while(true)
+						{
+							System.out.print("Enter dice to keep (y or n) ");
+							keepDie = input.nextLine();
+							if(keepDie.length() != 5)
+							{
+								System.out.println("Incorrect Input: Please input five dice to keep/remove");
+							}
+							else
+							{
+								break;
+							}
+						}
 					}
 					currentRolls++;
 				}
 				
 				//Prints sorted hand.
 				yHand.sort();
-				System.out.println();
+				printBS(1);
 				System.out.print("Your sorted hand: ");
 				yHand.print();
-				System.out.println();
+				printBS(1);
 				
 				//Creating a temporary score card to hold the scores from this turn.
 				ScoreCard tmpCard = new ScoreCard();
@@ -122,7 +134,7 @@ public class Yahtzee
 				//Prints out scores available to put into their game score card.
 				System.out.println("Your scores this turn are...");
 				tmpCard.print();
-				System.out.println();
+				printBS(1);
 				
 				//User chooses which score to add to their card.
 				System.out.println("Which line from the printed scores above do you want to add to your score card?");
@@ -160,17 +172,26 @@ public class Yahtzee
 			
 			//Prints out complete game card with totals.
 			gameCard.printComplete();
-			System.out.println();
+			printBS(1);
 			
 			//Asks user if they want to play again.
 			System.out.print("Would you like to play again? (y or n) ");
 			playAgain = input.nextLine();
-			System.out.println();
-			System.out.println();
+			printBS(2);
 		}
 		input.close();
 		
 		System.out.println("Thank you for playing!");
 	}
+	
+	public static void printBS(int numLines)
+	{
+		for(int i = 0; i < numLines; i++)
+		{
+			System.out.println();
+		}
+	}
 }
+
+
 

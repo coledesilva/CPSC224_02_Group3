@@ -201,24 +201,74 @@ public class Hand implements HandTests
 	    
 	    return false;
 	}
-
+	
+	public int returnCount(int type)
+	{
+		int count = 0;
+		for(int i = 0; i < diceNum; i++)
+		{
+			if(type == rollList.get(i).getRoll())
+			{
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
 	public boolean versatileVictor() 
 	{
+		int assaultCount = returnCount(9);
+		int shotgunCount = returnCount(6);
+		int sniperCount = returnCount(7);
+		int rocketLCount = returnCount(8);
+		int grenadeLCount = returnCount(5);
+		
+		if(assaultCount == 2 && shotgunCount == 1 && sniperCount == 1 && (rocketLCount == 1 || grenadeLCount == 1))
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
 	public boolean havingABlast() 
 	{
+		int rocketLCount = returnCount(8);
+		int grenadeLCount = returnCount(5);
+		
+		if(rocketLCount == 2 && grenadeLCount == 2)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
 	public boolean masterfulMarksman() 
 	{
+		int sniperCount = returnCount(7);
+		int crossbowCount = returnCount(2);
+		int assaultCount = returnCount(9);
+		
+		if(sniperCount == 2 && crossbowCount == 2 && assaultCount == 1)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
 	public boolean runninAndGunnin() 
 	{
+		int subCount = returnCount(4);
+		int shotgunCount = returnCount(6);
+		
+		if(subCount == 2 && shotgunCount == 2)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 }

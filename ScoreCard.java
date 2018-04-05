@@ -225,7 +225,7 @@ public class ScoreCard
 			total += 40;
 		}
 		
-		if(theHand.maxOfAKindFound() >= 5)
+		if(theHand.maxOfAKindFound() == 5)
 		{
 			tmpCard.set(diceSide + 7, 50);
 			total += 50;
@@ -246,22 +246,31 @@ public class ScoreCard
 				{
 					case 1:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line");
+						break;
 					case 2:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line");
+						break;
 					case 3:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line");
+						break;
 					case 4:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line");
+						break;
 					case 5:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line");
+						break;
 					case 6:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line");
+						break;
 					case 7:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line");
+						break;
 					case 8:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line");
+						break;
 					case 9:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line");
+						break;
 				}
 			}
 			else if(i >= diceSide)
@@ -316,24 +325,33 @@ public class ScoreCard
 			{
 				switch(i)
 				{
-					case 1:
+					case 0:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line");
-					case 2:
+						break;
+					case 1:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line");
-					case 3:
+						break;
+					case 2:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line");
-					case 4:
+						break;
+					case 3:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line");
-					case 5:
+						break;
+					case 4:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line");
-					case 6:
+						break;
+					case 5:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line");
-					case 7:
+						break;
+					case 6:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line");
-					case 8:
+						break;
+					case 7:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line");
-					case 9:
+						break;
+					case 8:
 						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line");
+						break;
 				}
 			}
 			else if(i >= diceSide)
