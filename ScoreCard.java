@@ -225,7 +225,7 @@ public class ScoreCard
 			total += 40;
 		}
 		
-		if(theHand.maxOfAKindFound() == 5)
+		if(theHand.maxOfAKindFound() >= 5)
 		{
 			tmpCard.set(diceSide + 7, 50);
 			total += 50;
