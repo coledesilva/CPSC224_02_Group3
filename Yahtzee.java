@@ -31,7 +31,6 @@ public class Yahtzee
 		
 		while(playAgain.equals("y"))
 		{
-			System.out.println("How many players would like to play? ");
 			Player[] player = getNumPlayers(input);
 			printBS(2);
 			
@@ -193,9 +192,29 @@ public class Yahtzee
 		System.out.println("Thank you for playing!");
 	}
 	
+	/*
+	 * Gets the number of players for the game.
+	 * 
+	 * @input The scanner for user input in the game.
+	 * 
+	 * @returns Am array of type Player with the specified number of players.
+	 */
 	private static Player[] getNumPlayers(Scanner input)
 	{
-		int numPlayers = Integer.parseInt(input.nextLine());
+		System.out.println("How many players would like to play? (Up to 5 players)");
+		int numPlayers;
+		while(true)
+		{
+			numPlayers = Integer.parseInt(input.nextLine());
+			if(numPlayers > 5)
+			{
+				System.out.println("ERROR: Invalid number of players. Please try again.");
+			}
+			else
+			{
+				break;
+			}
+		}
 		
 		Player[] players = new Player[numPlayers];
 		for(int i = 0; i < numPlayers; i++)
@@ -206,6 +225,11 @@ public class Yahtzee
 		return players;
 	}
 	
+	/* 
+	 * Prints blank lines.
+	 * 
+	 * @numLines The number of blank lines wished to be printed.
+	 */
 	public static void printBS(int numLines)
 	{
 		for(int i = 0; i < numLines; i++)
