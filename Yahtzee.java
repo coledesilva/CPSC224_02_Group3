@@ -24,7 +24,7 @@ public class Yahtzee
 	/*
 	 * Runs a game of Yahtzee until the user says they don't want to play again.
 	 */
-	private static void runGame()
+	protected static void runGame()
 	{
 		String playAgain = "y";
 		Scanner input = new Scanner(System.in);
