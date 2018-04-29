@@ -18,13 +18,13 @@ public class Yahtzee
 	
 	public static void main(String[] args) 
 	{
-		runGame();
+		runItGame();
 	}
 	
 	/*
 	 * Runs a game of Yahtzee until the user says they don't want to play again.
 	 */
-	protected static void runGame()
+	protected static void runItGame()
 	{
 		String playAgain = "y";
 		Scanner input = new Scanner(System.in);
