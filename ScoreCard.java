@@ -12,6 +12,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JTextArea;
+
 public class ScoreCard
 {
 	//HashMap score card implementation.
@@ -236,7 +238,7 @@ public class ScoreCard
 	/*
 	 * Prints out the score card with totals (upper, lower, and grand).
 	 */
-	public void printComplete()
+	public void printComplete(JTextArea area)
 	{
 		for(int i = 0; i < scoreCard.size(); i++)
 		{
@@ -245,31 +247,31 @@ public class ScoreCard
 				switch(i)
 				{
 					case 1:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line\n");
 						break;
 					case 2:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line\n");
 						break;
 					case 3:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line\n");
 						break;
 					case 4:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line\n");
 						break;
 					case 5:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line\n");
 						break;
 					case 6:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line\n");
 						break;
 					case 7:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line\n");
 						break;
 					case 8:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line\n");
 						break;
 					case 9:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line\n");
 						break;
 				}
 			}
@@ -277,47 +279,49 @@ public class ScoreCard
 			{
 				if(i == diceSide)
 				{
-					System.out.println("Total of the upper score card is: " + upperTotal);
-					System.out.println();
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the 3 of a kind line");
+					area.append("Total of the upper score card is: " + upperTotal+"\n");
+					area.append("\n");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the 3 of a kind line\n");
 				}
 				else if(i == diceSide + 1)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the 4 of a kind line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the 4 of a kind line\n");
 				}
 				else if(i == diceSide + 2)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Full House line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the Full House line\n");
 				}
 				else if(i == diceSide + 3)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Versatile Victor\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Versatile Victor\" line\n");
 				}
 				else if(i == diceSide + 4)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Having a Blast\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Having a Blast\" line\n");
 				}
 				else if(i == diceSide + 5)
 				{		
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Masterful Marksman\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Masterful Marksman\" line\n");
 				}
 				else if(i == diceSide + 6)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Runnin' and Gunnin'\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Runnin' and Gunnin'\" line\n");
 				}
 				else if(i == diceSide + 7)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line\n");
 				}
 			}
 		}
-		System.out.println("Total of the lower score card is: " + lowerTotal);
-		System.out.println();
-		System.out.println("Grand Total is: " + grandTotal);
+		area.append("Total of the lower score card is: " + lowerTotal+"\n");
+		area.append("\n");
+		area.append("Grand Total is: " + grandTotal+"\n");
+		area.append("\n");
+		area.append("\n");
 	}
 	
 	//Prints out the score card without totals.
-	public void print()
+	public void print(JTextArea area)
 	{		
 		for(int i = 0; i < scoreCard.size(); i++)
 		{
@@ -326,31 +330,31 @@ public class ScoreCard
 				switch(i)
 				{
 					case 0:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the PISTOL line\n");
 						break;
 					case 1:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the CROSSBOW line\n");
 						break;
 					case 2:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the MINIGUN line\n");
 						break;
 					case 3:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the SUBMACHINEGUN line\n");
 						break;
 					case 4:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the GRENADELAUNCHER line\n");
 						break;
 					case 5:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the SHOTGUN line\n");
 						break;
 					case 6:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the SNIPER line\n");
 						break;
 					case 7:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the ROCKETLAUNCHER line\n");
 						break;
 					case 8:
-						System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line");
+						area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the ASSAULTRIFLE line\n");
 						break;
 				}
 			}
@@ -358,35 +362,35 @@ public class ScoreCard
 			{
 				if(i == diceSide)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the 3 of a kind line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the 3 of a kind line\n");
 				}
 				else if(i == diceSide + 1)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the 4 of a kind line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the 4 of a kind line\n");
 				}
 				else if(i == diceSide + 2)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Full House line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the Full House line\n");
 				}
 				else if(i == diceSide + 3)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Versatile Victor\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Versatile Victor\" line\n");
 				}
 				else if(i == diceSide + 4)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Having a Blast\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Having a Blast\" line\n");
 				}
 				else if(i == diceSide + 5)
 				{		
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Masterful Marksman\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Masterful Marksman\" line\n");
 				}
 				else if(i == diceSide + 6)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Runnin' and Gunnin'\" line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the \"Runnin' and Gunnin'\" line\n");
 				}
 				else if(i == diceSide + 7)
 				{
-					System.out.println((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line");
+					area.append((i + 1) + ": Score " + scoreCard.get(i) + " on the Yahtzee line\n");
 				}
 			}
 		}

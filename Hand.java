@@ -122,7 +122,7 @@ public class Hand implements HandTests
 	{
 		int maxCount = 0;
 	    int currentCount ;
-	    for (int dieValue = 1; dieValue <= diceNum + 1; dieValue++)
+	    for (int dieValue = 1; dieValue <= 9; dieValue++)
 	    {
 	        currentCount = 0;
 	        for (int diePosition = 0; diePosition < diceNum; diePosition++)
@@ -173,7 +173,7 @@ public class Hand implements HandTests
 	    boolean found3K = false;
 	
 	    int currentCount ;
-	    for (int dieValue = 1; dieValue <= diceNum + 1; dieValue++)
+	    for (int dieValue = 1; dieValue <= 9; dieValue++)
 	    {
 	        currentCount = 0;
 	        

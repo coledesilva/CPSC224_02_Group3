@@ -16,7 +16,7 @@ public class Dice
 	private Weapon type;
 	private int diceSide = 9;
 	
-	private enum Weapon
+	public enum Weapon
 	{
 		pistol, 
 		crossbow, 
