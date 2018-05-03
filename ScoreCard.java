@@ -187,13 +187,13 @@ public class ScoreCard
 		int total = 0;
 		if(theHand.maxOfAKindFound() >= 3)
 		{
-			tmpCard.set(diceSide, theHand.totalAllDice());
+			tmpCard.set(diceSide, theHand.totalAllDice() + 10);
 			total += 10;
 		}
 		
 		if(theHand.maxOfAKindFound() >= 4)
 		{
-			tmpCard.set(diceSide + 1, theHand.totalAllDice());
+			tmpCard.set(diceSide + 1, theHand.totalAllDice() + 20);
 			total += 20;
 		}
 		
@@ -211,7 +211,7 @@ public class ScoreCard
 		
 		if(theHand.havingABlast())
 		{
-			tmpCard.set(diceSide + 4, 40);
+			tmpCard.set(diceSide + 4, 35);
 			total += 35;
 		}
 		

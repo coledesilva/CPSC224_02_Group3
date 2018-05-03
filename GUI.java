@@ -42,13 +42,13 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 
-public class GUI extends Yahtzee
+public class GUI
 {
 	private static final int diceSide = 9;
 	private static final int diceNum = 5;
 	private static final int rollsPerHand = 4;
 	
-	private static int currentRolls = 1;
+	private static int currentRoll = 1;
 	private static int gameTurn = 1;
 	private static int playerNum;
 	private static Hand yHand;
@@ -125,7 +125,7 @@ public class GUI extends Yahtzee
 		frmFortniteYahtzee = new JFrame();
 		frmFortniteYahtzee.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		frmFortniteYahtzee.setTitle("Fortnite Yahtzee");
-		frmFortniteYahtzee.setSize(screenSize.width, screenSize.height);
+		frmFortniteYahtzee.setSize(1200, 800);
 		frmFortniteYahtzee.setResizable(false);
 		frmFortniteYahtzee.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -146,35 +146,108 @@ public class GUI extends Yahtzee
         JButton playButton = new JButton();
         playButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
         playButton.setText("PLAY");
-        playButton.setBounds(315, 535, 320, 125);
+        playButton.setBounds(225, 450, 320, 125);
         mainPanel.add(playButton);
         
         JButton instrucButton = new JButton();
         instrucButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
         instrucButton.setText("INSTRUCTIONS");
-        instrucButton.setBounds(315, 670, 320, 125);
+        instrucButton.setBounds(225, 575, 320, 125);
         mainPanel.add(instrucButton);
-        
-        JLabel labelNumPlayers = new JLabel();
-        labelNumPlayers.setBounds(645, 540, 200, 75);
-        labelNumPlayers.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        labelNumPlayers.setForeground(Color.WHITE);
-        labelNumPlayers.setText("Number of Players");
-        mainPanel.add(labelNumPlayers);
-        
-        JTextField numberOfPlayers = new JTextField();
-        numberOfPlayers.setEditable(true);
-        numberOfPlayers.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        numberOfPlayers.setBounds(645, 600, 50, 50);
-        mainPanel.add(numberOfPlayers);
         
        playButton.addActionListener(new ActionListener()
        {
     	   		public void actionPerformed(ActionEvent e) 
     	   		{
-    	   			int numPlayers = Integer.parseInt(numberOfPlayers.getText());
-    	   			mainPanel.setVisible(false);
-				runGame(numPlayers, mainPanel);
+    	   			instrucButton.setVisible(false);
+    	   			
+    	   			JLabel labelNumPlayers = new JLabel();
+    	   			labelNumPlayers.setBounds(225, 550, 250, 75);
+    	   			labelNumPlayers.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    	   			labelNumPlayers.setForeground(Color.WHITE);
+    	   			labelNumPlayers.setText("Number of Players:");
+    	   			mainPanel.add(labelNumPlayers);
+    	         
+    	   			JButton playerNum1 = new JButton();
+    	   			playerNum1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    	   			playerNum1.setText("1");
+    	   			playerNum1.setBounds(225, 600, 50, 50);
+    	   			playerNum1.setVisible(true);
+    	   			mainPanel.add(playerNum1);
+    	   			
+    	   			JButton playerNum2 = new JButton();
+    	   			playerNum2.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    	   			playerNum2.setText("2");
+    	   			playerNum2.setBounds(275, 600, 50, 50);
+    	   			playerNum2.setVisible(true);
+    	   			mainPanel.add(playerNum2);
+    	   			
+    	   			JButton playerNum3 = new JButton();
+    	   			playerNum3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    	   			playerNum3.setText("3");
+    	   			playerNum3.setBounds(325, 600, 50, 50);
+    	   			playerNum3.setVisible(true);
+    	   			mainPanel.add(playerNum3);
+    	   			
+    	   			JButton playerNum4 = new JButton();
+    	   			playerNum4.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    	   			playerNum4.setText("4");
+    	   			playerNum4.setBounds(375, 600, 50, 50);
+    	   			playerNum4.setVisible(true);
+    	   			mainPanel.add(playerNum4);
+    	   			
+    	   			JButton playerNum5 = new JButton();
+    	   			playerNum5.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    	   			playerNum5.setText("5");
+    	   			playerNum5.setBounds(425, 600, 50, 50);
+    	   			playerNum5.setVisible(true);
+    	   			mainPanel.add(playerNum5);
+    	   			
+    	   			playerNum1.addActionListener(new ActionListener()
+    	   			{
+					public void actionPerformed(ActionEvent e) 
+					{
+						runGame(1, mainPanel);
+						mainPanel.setVisible(false);
+					}
+    	   			});
+    	   			
+    	   			playerNum2.addActionListener(new ActionListener()
+    	   			{
+					public void actionPerformed(ActionEvent e) 
+					{
+						runGame(2, mainPanel);
+						mainPanel.setVisible(false);
+					}
+    	   			});
+    	   			
+    	   			playerNum3.addActionListener(new ActionListener()
+    	   			{
+					public void actionPerformed(ActionEvent e) 
+					{
+						runGame(3, mainPanel);
+						mainPanel.setVisible(false);
+					}
+    	   			});
+    	   			
+    	   			playerNum4.addActionListener(new ActionListener()
+    	   			{
+					public void actionPerformed(ActionEvent e) 
+					{
+						runGame(4, mainPanel);						
+						mainPanel.setVisible(false);
+					}
+    	   			});
+    	   			
+    	   			playerNum5.addActionListener(new ActionListener()
+    	   			{
+					public void actionPerformed(ActionEvent e) 
+					{
+						runGame(5, mainPanel);						
+						mainPanel.setVisible(false);
+					}
+    	   			});
+ 
 			}
        });
        
@@ -190,7 +263,7 @@ public class GUI extends Yahtzee
     	   			frmFortniteYahtzee.getContentPane().add(instrucPanel);
     	   			
     	   	        instrucPanel.repaint();
-    	   	     mainPanel.setVisible(false);
+    	   	        mainPanel.setVisible(false);
     	   	        instrucPanel.setVisible(true);
     	   	        
     	   	        JTextArea instructions1 = new JTextArea();
@@ -211,13 +284,13 @@ public class GUI extends Yahtzee
 	    	   	    JButton MainMenu = new JButton();
 	    	   	    MainMenu.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
 	    	   	    MainMenu.setText("Main Menu");
-	    	   	    MainMenu.setBounds(1150, 645, 250, 100);
+	    	   	    MainMenu.setBounds(925, 645, 250, 100);
 	    	        instrucPanel.add(MainMenu);
 	    	        
 	    	        JButton next1 = new JButton();
 	    	        next1.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
 	    	        next1.setText("Next");
-	            next1.setBounds(890, 645, 250, 100);
+	            next1.setBounds(675, 645, 250, 100);
 	   	        instrucPanel.add(next1);
 	   	        
 	   	        MainMenu.addActionListener(new ActionListener()
@@ -244,7 +317,7 @@ public class GUI extends Yahtzee
 	   	        			JButton next2 = new JButton();
 	   	        			next2.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
 	   	        			next2.setText("Next");
-	   	        			next2.setBounds(890, 645, 250, 100);
+	   	        			next2.setBounds(675, 645, 250, 100);
 	   		   	        instrucPanel.add(next2);
 	   		   	        
 			   		   	JTextArea instructions2 = new JTextArea();
@@ -331,20 +404,10 @@ public class GUI extends Yahtzee
 		}
 		
 		JPanel game1 = new JPanel();
-		game1.setBackground(new Color(211, 211, 211));
+		game1.setBackground(new Color(188, 158, 193));
 		game1.setLayout(null);
 		
         frmFortniteYahtzee.getContentPane().add(game1);
-        
-        JTextArea game1Text = new JTextArea();
-        game1Text.setEditable(false);
-        game1Text.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
-        game1Text.setText("Click the roll button to roll the dice");
-        game1Text.setBounds(50,50, 405, 40);
-        game1Text.setBorder(BorderFactory.createLineBorder(Color.black));
-        game1Text.setBackground(new Color(32, 178, 170));
-        game1Text.setForeground(Color.BLACK);
-        game1.add(game1Text);
         
         JTextArea game1Score = new JTextArea();
         game1Score.setEditable(false);
@@ -369,9 +432,9 @@ public class GUI extends Yahtzee
         
         JButton inputScore = new JButton();
         inputScore.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-        inputScore.setText("Input Score Bitch");
-        inputScore.setBounds(110, 240, 200, 75);
-        inputScore.setVisible(true);
+        inputScore.setText("Input Score");
+        inputScore.setBounds(50, 240, 200, 75);
+        inputScore.setVisible(false);
         game1.add(inputScore);
         
         JLabel playerCount = new JLabel();
@@ -380,35 +443,33 @@ public class GUI extends Yahtzee
         playerCount.setText("Turn " + gameTurn +": Player " + playerNum);
         game1.add(playerCount);
         
-        JLabel scoreLabel = new JLabel();
-		scoreLabel.setText("Please input the score line you want to keep:");
-        scoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-        scoreLabel.setForeground(Color.BLACK);
-		scoreLabel.setBounds(50, 200, 400, 50);
-		scoreLabel.setVisible(true);
-		game1.add(scoreLabel);
+        JLabel scoreLabel1 = new JLabel();
+        JLabel scoreLabel2 = new JLabel();
+		scoreLabel1.setText("Please click the score line");
+        scoreLabel1.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
+        scoreLabel1.setForeground(Color.BLACK);
+		scoreLabel1.setBounds(50, 200, 400, 50);
+		scoreLabel1.setVisible(true);
 		
-		JTextField scoreLine = new JTextField();
-		scoreLine.setEditable(true);
-		scoreLine.setBounds(50, 240, 50,50);
-		scoreLine.setVisible(true);
-		game1.add(scoreLine);
+		scoreLabel2.setText("you want to keep!");
+		scoreLabel2.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
+        scoreLabel2.setForeground(Color.BLACK);
+		scoreLabel2.setBounds(50, 250, 400, 50);
+		scoreLabel2.setVisible(true);
 		
-		JLabel scoreError = new JLabel();
-		scoreError.setText("Error: You already have a score in that line");
-		scoreError.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		scoreError.setForeground(Color.BLACK);
-		scoreError.setBounds(50, 250, 200, 50);
-		scoreError.setVisible(true);
-		game1.add(scoreLabel);
+		game1.add(scoreLabel1);
+		game1.add(scoreLabel2);
 		
 		yHand = new Hand();
+		ScoreCard tmpCard = new ScoreCard();
         
         boolean[] allDice = new boolean[5];
         for(int i = 0; i < allDice.length; i++)
         {
         		allDice[i] = false;
         }
+        
+        
         
        JCheckBox check1 = new JCheckBox();
        check1.setBounds(535, 200, 50, 50);
@@ -496,22 +557,166 @@ public class GUI extends Yahtzee
 			}
        });
 
-        
+       JButton[] scoreButtons = new JButton[17];
+       ActionListener scoreButtonListener = new ActionListener()
+       {
+       		public void actionPerformed(ActionEvent e) 
+       		{
+       			if(e.getSource() instanceof JButton)
+       			{
+       				yHand = new Hand();
+       				
+       				int buttonNum = Integer.parseInt(((JButton) e.getSource()).getText());
+       				System.out.println("buttonNum " + buttonNum);
+       				players[playerNum - 1].getScoreCard().set(buttonNum, tmpCard.get(buttonNum));
+       				System.out.println("player card " + players[playerNum - 1].getScoreCard().get(buttonNum));
+
+       				for(int i = 0; i < scoreButtons.length; i++)
+       				{
+       					scoreButtons[i].setVisible(false);
+       				}
+       				
+       				game1Score.setText("");
+       				
+       				if(playerNum == numPlayers)
+			        {
+			        		gameTurn++;
+			        		playerNum = 0;
+   					}
+			        
+			        playerNum++;
+					currentRoll = 1;
+			        playerCount.setText("Turn " + gameTurn +": Player " + playerNum);
+			        
+			        calculateButton.setVisible(false);
+			        rollButton.setVisible(true);
+			        
+				    for(int i = 0; i < allDice.length; i++)
+           			{
+           				allDice[i] = false;
+           			}
+           			keepDie = checkAllDice(allDice);
+           			
+           			for(int i = 0; i < slots.length; i++)
+       				{
+       					slots[i].setIcon(emptySlot);
+       					slots[i].repaint();
+       				}
+
+           			if(gameTurn == 17)
+           			{
+           				game1.setVisible(false);
+           				for(int i = 0; i < slots.length; i++)
+           				{
+           					slots[i].setVisible(false);
+           				}
+           				
+           				JPanel finalGame = new JPanel();
+           				finalGame.setBackground(new Color(248, 199, 204));
+           				finalGame.setLayout(null);
+           				frmFortniteYahtzee.getContentPane().add(finalGame);
+           				
+           				JLabel finalScoreLabel = new JLabel();
+           				finalScoreLabel.setText("Final Score Cards");
+           				finalScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
+           				finalScoreLabel.setForeground(Color.BLACK);
+           				finalScoreLabel.setBounds(50, 50, 400, 50);
+           				finalScoreLabel.setVisible(true);
+           				finalGame.add(finalScoreLabel);
+           				
+           				JTextArea finalScores = new JTextArea();
+           				finalScores.setEditable(false);
+           				finalScores.setBounds(50, 110, 500, 400);
+           				finalScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+           				finalScores.setForeground(Color.BLACK);
+           				finalScores.setBackground(new Color(155, 145, 181));
+           				JScrollPane scroll = new JScrollPane(finalScores);
+           				scroll.setBounds(50,110,500,400);
+           				finalGame.add(scroll);
+           				
+           				for(int i = 0; i < players.length; i++)
+           				{
+           					players[i].getScoreCard().setUpper(players[i].getScoreCard().calculateUpper());
+           					players[i].getScoreCard().setLower(players[i].getScoreCard().calculateLower());
+           					players[i].getScoreCard().calculateGrand();
+           					
+           					finalScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
+           					finalScores.append("Player " + (i + 1) + " Score Card:\n");
+           					finalScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+           					finalScores.append("\n");
+           					players[i].getScoreCard().printComplete(finalScores);
+           				}
+           				
+           				JLabel playAgain = new JLabel();
+           				playAgain.setText("Would you like to play again?");
+           				playAgain.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
+           				playAgain.setForeground(Color.BLACK);
+           				playAgain.setBounds(600, 110, 500, 250);
+           				playAgain.setVisible(true);
+           				finalGame.add(playAgain);
+           				
+           				JButton yesButton = new JButton();
+           				yesButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
+           				yesButton.setText("Yes");
+           				yesButton.setBounds(725, 300, 100, 100);
+           				finalGame.add(yesButton);
+           				
+           				JButton noButton = new JButton();
+           				noButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
+           				noButton.setText("No");
+           				noButton.setBounds(835, 300, 100, 100);
+           				finalGame.add(noButton);
+           				
+           				yesButton.addActionListener(new ActionListener()
+           				{
+							public void actionPerformed(ActionEvent e) 
+							{
+								finalGame.setVisible(false);
+								mainPanel.setVisible(true);
+								gameTurn = 1;
+								currentRoll = 1;
+							}
+           				});
+           				
+           				noButton.addActionListener(new ActionListener()
+   						{
+           					public void actionPerformed(ActionEvent e)
+           					{
+           						System.exit(0);
+           					}
+   						});
+           			}
+       			}
+       		}
+       };
+       
+       for(int i = 0, y = 255; i < scoreButtons.length; i++)
+       {
+       		scoreButtons[i] = new JButton();
+       		scoreButtons[i].setBounds(475, y, 10,10);
+       		scoreButtons[i].setText(Integer.toString(i));
+       		scoreButtons[i].addActionListener(scoreButtonListener);
+       		scoreButtons[i].setVisible(false);
+       		game1.add(scoreButtons[i]);
+       		
+       		y += 23;
+       }
+       
         keepDie = checkAllDice(allDice);
 		
 		rollButton.addActionListener(new ActionListener()
         	{
 				public void actionPerformed(ActionEvent e) 
 				{
-					if(currentRolls <= rollsPerHand && numPlayers <= 5)
+					if(currentRoll <= rollsPerHand)
 					{
-						System.out.println(currentRolls);
+						System.out.println(currentRoll);
 						for(int dieNumber = 0; dieNumber < diceNum; dieNumber++)
 						{
 							if(allDice[dieNumber] != true)
 							{
 								Dice newDice = new Dice();
-								if(currentRolls == 1)
+								if(currentRoll == 1)
 								{
 									try 
 									{
@@ -531,13 +736,19 @@ public class GUI extends Yahtzee
 								}
 							}
 						}
-						if(currentRolls == rollsPerHand) 
+						if(currentRoll == rollsPerHand) 
 						{
+							check1.setSelected(false);
+							check2.setSelected(false);
+							check3.setSelected(false);
+							check4.setSelected(false);
+							check5.setSelected(false);
 							calculateButton.setVisible(true);
+							rollButton.setVisible(false);
 						}
 						
 						printHand(yHand, slots);
-						currentRolls++;
+						currentRoll++;
 					}
 				}
         	});
@@ -546,125 +757,23 @@ public class GUI extends Yahtzee
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				ScoreCard tmpCard = new ScoreCard();
+				calculateButton.setVisible(false);
         			tmpCard.upperScores(yHand, tmpCard);
         			tmpCard.lowerScores(yHand, tmpCard);
 		
         			tmpCard.print(game1Score);
-        		
-        			inputScore.addActionListener(new ActionListener()
-        			{
-						public void actionPerformed(ActionEvent e) 
-						{
-							int lineNum = Integer.parseInt(scoreLine.getText());
-							
-							if(players[playerNum - 1].getScoreCard().get(lineNum - 1) == 0) 
-		        				{
-		        					players[playerNum - 1].getScoreCard().set(lineNum - 1, tmpCard.get(lineNum - 1));
-		        				}	
-		        				else
-		        				{
-		        					scoreError.setVisible(true);
-		        				}
-
-		        				game1Score.setText("");
-		        				scoreLine.setText("");
-		        				for(int i = 0; i < slots.length; i++)
-		        				{
-		        					slots[i].setIcon(emptySlot);
-		        					slots[i].setBorder(BorderFactory.createLineBorder(Color.black));
-
-		        					slots[i].repaint();
-		        				}
-		        				
-					        if(playerNum == numPlayers)
-					        {
-					        		gameTurn++;
-					        		playerNum = 0;
-	        					}
-					        
-					        playerNum++;
-							currentRolls = 1;
-					        playerCount.setText("Turn " + gameTurn +": Player " + playerNum);
-					        
-					        calculateButton.setVisible(false);
-					        
-		            			for(int i = 0; i < allDice.length; i++)
-		            			{
-		            				allDice[i] = false;
-		            			}
-		            			keepDie = checkAllDice(allDice);
-		            			
-		            			if(gameTurn == 3)
-		            			{
-		            				game1.setVisible(false);
-		            				for(int i = 0; i < slots.length; i++)
-		            				{
-		            					slots[i].setVisible(false);
-		            				}
-		            				
-		            				JPanel finalGame = new JPanel();
-		            				finalGame.setBackground(new Color(211, 211, 211));
-		            				finalGame.setLayout(null);
-		            				frmFortniteYahtzee.getContentPane().add(finalGame);
-		            				
-		            				JLabel finalScoreLabel = new JLabel();
-		            				finalScoreLabel.setText("Final Score Cards");
-		            				finalScoreLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
-		            				finalScoreLabel.setForeground(Color.BLACK);
-		            				finalScoreLabel.setBounds(50, 50, 400, 50);
-		            				finalScoreLabel.setVisible(true);
-		            				finalGame.add(finalScoreLabel);
-		            				
-		            				JTextArea finalScores = new JTextArea();
-		            				finalScores.setEditable(false);
-		            				finalScores.setBounds(50, 110, 500, 400);
-		            				finalScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		            				finalScores.setForeground(Color.BLACK);
-		            				finalScores.setBackground(new Color(155, 145, 181));
-		            				JScrollPane scroll = new JScrollPane(finalScores);
-		            				scroll.setBounds(50,110,500,400);
-		            				finalGame.add(scroll);
-		            				
-		            				for(int i = 0; i < players.length; i++)
-		            				{
-		            					players[i].getScoreCard().setUpper(players[i].getScoreCard().calculateUpper());
-		            					players[i].getScoreCard().setLower(players[i].getScoreCard().calculateLower());
-		            					players[i].getScoreCard().calculateGrand();
-		            					
-		            					finalScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-		            					finalScores.append("Player " + (i + 1) + " Score Card:\n");
-		            					finalScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		            					finalScores.append("\n");
-		            					players[i].getScoreCard().printComplete(finalScores);
-		            				}
-		            				
-		            				JLabel playAgain = new JLabel();
-		            				playAgain.setText("Would you like to play again?");
-		            				playAgain.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
-		            				playAgain.setForeground(Color.BLACK);
-		            				playAgain.setBounds(600, 110, 500, 250);
-		            				playAgain.setVisible(true);
-		            				finalGame.add(playAgain);
-		            				
-		            				JButton again = new JButton();
-		            				again.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
-		            				again.setText("Yes");
-		            				again.setBounds(725, 300, 100, 100);
-		            				finalGame.add(again);
-		            				
-		            				again.addActionListener(new ActionListener()
-		            				{
-									public void actionPerformed(ActionEvent e) 
-									{
-										finalGame.setVisible(false);
-										mainPanel.setVisible(true);
-									}
-		            				});
-		            				
-		            			}
-						}
-        			});
+        			
+        			for(int i = 0; i < scoreButtons.length; i++)
+    				{
+    					if(players[playerNum - 1].getScoreCard().get(i) == 0)
+    					{
+    						scoreButtons[i].setVisible(true);
+    					}
+    					else
+    					{
+    						scoreButtons[i].setVisible(false);
+    					}
+    				}
 			}
 		});
 			
