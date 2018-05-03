@@ -414,7 +414,7 @@ public class GUI
         game1Score.setBounds(500, 250, 500, 400);
         game1Score.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
         game1Score.setForeground(Color.BLACK);
-        game1Score.setBackground(new Color(155, 145, 181));
+        game1Score.setBackground(new Color(124, 165, 184));
        	game1.add(game1Score);
         
         JButton rollButton = new JButton();
