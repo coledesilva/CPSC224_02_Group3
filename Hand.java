@@ -216,6 +216,12 @@ public class Hand implements HandTests
 		return count;
 	}
 	
+	/*
+	 * Checks if a versatile victor is found. 
+	 * 
+	 * @returns True if the hand is a versatile victor.
+	 * 			False if the hand is not a versatile victor.
+	 */
 	public boolean versatileVictor() 
 	{
 		int assaultCount = returnCount(9);
@@ -232,6 +238,12 @@ public class Hand implements HandTests
 		return false;
 	}
 
+	/*
+	 * Checks if a having a blast is found. 
+	 * 
+	 * @returns True if the hand is a having a blast.
+	 * 			False if the hand is not a having a blast.
+	 */
 	public boolean havingABlast() 
 	{
 		int rocketLCount = returnCount(8);
@@ -245,6 +257,12 @@ public class Hand implements HandTests
 		return false;
 	}
 
+	/*
+	 * Checks if a masterful marksman is found. 
+	 * 
+	 * @returns True if the hand is a masterful marksman.
+	 * 			False if the hand is not a masterful marksman.
+	 */
 	public boolean masterfulMarksman() 
 	{
 		int sniperCount = returnCount(7);
@@ -259,6 +277,12 @@ public class Hand implements HandTests
 		return false;
 	}
 
+	/*
+	 * Checks if a runnin and gunnin is found. 
+	 * 
+	 * @returns True if the hand is a masterful runnin and gunnin.
+	 * 			False if the hand is not a masterful runnin and gunnin.
+	 */
 	public boolean runninAndGunnin() 
 	{
 		int subCount = returnCount(4);

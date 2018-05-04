@@ -51,6 +51,11 @@ public class Dice
 		return type;
 	}
 	
+	public void set(int value) 
+	{
+		roll = value;
+	}
+	
 	/*
 	 * Rolls a die with diceSide amount of sides
 	 * 

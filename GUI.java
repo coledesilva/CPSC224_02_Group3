@@ -122,6 +122,7 @@ public class GUI
 	private void initialize() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+		//sets up frame
 		frmFortniteYahtzee = new JFrame();
 		frmFortniteYahtzee.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		frmFortniteYahtzee.setTitle("Fortnite Yahtzee");
@@ -129,12 +130,14 @@ public class GUI
 		frmFortniteYahtzee.setResizable(false);
 		frmFortniteYahtzee.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		mainMenu(screenSize);
+		//starts game at main menu
+		mainMenu();
 		
 	}
 	
-	private void mainMenu(Dimension screenSize)
+	private void mainMenu()
 	{
+		//sets up background for main menu
 		ImageIcon imageIcon = new ImageIcon("mainMenu.jpg");
 		MyPanel mainPanel = new MyPanel(imageIcon);
 		mainPanel.setLayout(null);
@@ -143,18 +146,21 @@ public class GUI
         
         mainPanel.repaint();
         
+        //adds play button
         JButton playButton = new JButton();
         playButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
         playButton.setText("PLAY");
         playButton.setBounds(225, 450, 320, 125);
         mainPanel.add(playButton);
         
+        //adds instrucion button
         JButton instrucButton = new JButton();
         instrucButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
         instrucButton.setText("INSTRUCTIONS");
         instrucButton.setBounds(225, 575, 320, 125);
         mainPanel.add(instrucButton);
         
+        //action listener for play button which brings up selection of number of players
        playButton.addActionListener(new ActionListener()
        {
     	   		public void actionPerformed(ActionEvent e) 
@@ -168,6 +174,7 @@ public class GUI
     	   			labelNumPlayers.setText("Number of Players:");
     	   			mainPanel.add(labelNumPlayers);
     	         
+    	   			//creating buttons with number of players 
     	   			JButton playerNum1 = new JButton();
     	   			playerNum1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
     	   			playerNum1.setText("1");
@@ -203,6 +210,7 @@ public class GUI
     	   			playerNum5.setVisible(true);
     	   			mainPanel.add(playerNum5);
     	   			
+    	   			//adding action listeners to the numbered buttons
     	   			playerNum1.addActionListener(new ActionListener()
     	   			{
 					public void actionPerformed(ActionEvent e) 
@@ -251,6 +259,7 @@ public class GUI
 			}
        });
        
+       //adding instruction button action listener to bring user to instruction panels
        instrucButton.addActionListener(new ActionListener()
        {
     	   		public void actionPerformed(ActionEvent e) 
@@ -302,6 +311,7 @@ public class GUI
 	     	   		}
 		        });
 		   	    
+	   	        //brings user to next instruction panel
 	   	        next1.addActionListener(new ActionListener()
 	   	        {
 	   	        		public void actionPerformed(ActionEvent e) 
@@ -341,6 +351,7 @@ public class GUI
 		  	   	        instructions2.setForeground(Color.WHITE);
 		  	   	        instrucPanel.add(instructions2);
 		  	   	        
+		  	   	        //brings user to last instruction panel
 			  	   	    next2.addActionListener(new ActionListener()
 			  	   	    {
 				    	   		public void actionPerformed(ActionEvent e) 
@@ -384,9 +395,12 @@ public class GUI
        });
 	}
 	
+	//runs game with the specified number of players
 	private void runGame(int numPlayers, MyPanel mainPanel)
 	{
 		playerNum = 1;
+		
+		//creates the slots where the dice images are shown 
 		MyPanel[] slots = new MyPanel[5];
 		for(int i = 0, x = 500; i < slots.length; i++)
 		{
@@ -397,12 +411,14 @@ public class GUI
 			x += 100;
 		}
 		
+		//creates an array of the correct number of players
 		Player[] players = new Player[numPlayers];
 		for(int i = 0; i < numPlayers; i++)
 		{
 			players[i] = new Player();
 		}
 		
+		//panel of the game and its components
 		JPanel game1 = new JPanel();
 		game1.setBackground(new Color(188, 158, 193));
 		game1.setLayout(null);
@@ -470,7 +486,7 @@ public class GUI
         }
         
         
-        
+        //creates check boxes for the user to keep dice
        JCheckBox check1 = new JCheckBox();
        check1.setBounds(535, 200, 50, 50);
        game1.add(check1);
@@ -557,6 +573,8 @@ public class GUI
 			}
        });
 
+       //adds action listeners and creates the buttons which the user uses to select which
+       //line they want to add to their score card
        JButton[] scoreButtons = new JButton[17];
        ActionListener scoreButtonListener = new ActionListener()
        {
@@ -602,7 +620,8 @@ public class GUI
        					slots[i].setIcon(emptySlot);
        					slots[i].repaint();
        				}
-
+           			
+           			//after game turn hits 17 go into the end game panel
            			if(gameTurn == 17)
            			{
            				game1.setVisible(false);
@@ -611,6 +630,7 @@ public class GUI
            					slots[i].setVisible(false);
            				}
            				
+           				//creates final panel and shows the user their final scorecard
            				JPanel finalGame = new JPanel();
            				finalGame.setBackground(new Color(248, 199, 204));
            				finalGame.setLayout(null);
@@ -703,7 +723,7 @@ public class GUI
        }
        
         keepDie = checkAllDice(allDice);
-		
+		//action listener for the roll button on the game panel
 		rollButton.addActionListener(new ActionListener()
         	{
 				public void actionPerformed(ActionEvent e) 
@@ -753,6 +773,7 @@ public class GUI
 				}
         	});
 		
+		//action listener for the calculate button on the game panel
 		calculateButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -779,6 +800,7 @@ public class GUI
 			
 	}
 	
+	//prints hand to the image slots on the game panel
 	private void printHand(Hand yHand, MyPanel[] slots)
 	{
 		for(int i = 0; i < diceNum; i++)
@@ -825,6 +847,7 @@ public class GUI
 		}
 	}
 	
+	//checks to see if all dice are kept
 	private boolean checkAllDice(boolean[] allDice)
 	{
 		if(allDice[0] && allDice[1] && allDice[2] && allDice[3]
